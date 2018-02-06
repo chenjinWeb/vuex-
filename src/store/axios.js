@@ -38,7 +38,6 @@ instance.interceptors.request.use((config)=>{
 
 // 添加响应拦截器
 instance.interceptors.response.use((response)=>{
-  console.info(response)
   //对响应数据做些什么
   Indicator.list.pop();
   Indicator.list.length === 0 && Indicator.close();
@@ -50,7 +49,7 @@ instance.interceptors.response.use((response)=>{
   }
   //没有登录
   if(response.data.success==401){
-    //router.replace({name:"login"});
+    router.replace({name:"login"});
     return Promise.reject('not login');
   }
   return Promise.reject('not Data');
